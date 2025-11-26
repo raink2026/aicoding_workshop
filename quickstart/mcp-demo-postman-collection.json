@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "8d7d9c69-5a9e-4e4a-9c6d-0a8c7c9b3e2f",
+		"name": "MCP Demo Tools",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"description": "Postman collection for testing MCP tools in the demo project"
+	},
+	"item": [
+		{
+			"name": "Capitalize Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"capitalize\",\n    \"arguments\": {\n      \"text\": \"hello world\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the capitalize tool which converts the first letter of each word in the input text to uppercase."
+			},
+			"response": []
+		},
+		{
+			"name": "Calculate Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"calculate\",\n    \"arguments\": {\n      \"a\": 10,\n      \"b\": 5,\n      \"operator\": \"+\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the calculate tool which performs arithmetic operations on two numbers."
+			},
+			"response": []
+		},
+		{
+			"name": "Java Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"javaAssistant\",\n    \"arguments\": {\n      \"query\": \"How to create a thread in Java?\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the Java assistant tool which provides answers to Java-related questions."
+			},
+			"response": []
+		},
+		{
+			"name": "Go Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"goAssistant\",\n    \"arguments\": {\n      \"query\": \"How to declare a variable in Go?\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the Go assistant tool which provides answers to Go-related questions."
+			},
+			"response": []
+		},
+		{
+			"name": "Frontend Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"frontendAssistant\",\n    \"arguments\": {\n      \"query\": \"How to center a div in CSS?\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the frontend assistant tool which provides answers to frontend development questions."
+			},
+			"response": []
+		},
+		{
+			"name": "Python Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"pythonAssistant\",\n    \"arguments\": {\n      \"query\": \"How to define a function in Python?\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the Python assistant tool which provides answers to Python-related questions."
+			},
+			"response": []
+		},
+		{
+			"name": "SQL Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"sqlAssistant\",\n    \"arguments\": {\n      \"query\": \"How to select all records from a table?\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the SQL assistant tool which provides answers to SQL-related questions."
+			},
+			"response": []
+		},
+		{
+			"name": "QA Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"qaAssistant\",\n    \"arguments\": {\n      \"query\": \"What is the capital of France?\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the QA assistant tool which provides answers to general knowledge questions."
+			},
+			"response": []
+		},
+		{
+			"name": "Code Library Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"codeLibAssistant\",\n    \"arguments\": {\n      \"query\": \"Show me an example of Spring Boot controller\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the code library assistant tool which provides code examples and references."
+			},
+			"response": []
+		},
+		{
+			"name": "Coze Chat Assistant Tool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"cozeChatAssistant\",\n    \"arguments\": {\n      \"query\": \"Tell me a joke\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/call",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"call"
+					]
+				},
+				"description": "Calls the Coze chat assistant tool which connects to the Coze chatbot API."
+			},
+			"response": []
+		},
+		{
+			"name": "List Tools",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/list\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8088/mcp/tools/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"mcp",
+						"tools",
+						"list"
+					]
+				},
+				"description": "Lists all available tools in the MCP server."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

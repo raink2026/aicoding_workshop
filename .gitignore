@@ -1,0 +1,15 @@
+# Compiled class file
+/target/
+*.jar
+
+# Log file
+/logs/
+
+# IDE settings
+/.idea/
+/.comate/
+
+# Other
+.DS_Store
+*.zip
+*.pdf
