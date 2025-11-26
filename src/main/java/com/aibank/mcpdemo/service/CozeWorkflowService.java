@@ -1,5 +1,6 @@
 package com.aibank.mcpdemo.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -13,7 +14,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -52,7 +55,7 @@ public class CozeWorkflowService {
      */
     public String cozeChatAssistant(String query) {
         log.info("开始调用Coze聊天接口，用户输入: {}", query);
-        var effectiveQuery = (query == null || query.isBlank()) ? DEFAULT_PROMPT : query;
+        String effectiveQuery = StrUtil.isBlank(query) ? DEFAULT_PROMPT : query;
         log.debug("有效查询内容: {}", effectiveQuery);
 
         try {
@@ -60,29 +63,28 @@ public class CozeWorkflowService {
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(API_KEY);
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
             // body
-            Map<String, Object> requestBody = Map.of(
-                    "bot_id", BOT_ID,
-                    "user_id", DEFAULT_USER_ID,
-                    "stream", true,
-                    "additional_messages", List.of(
-                            Map.of(
-                                    "content", effectiveQuery,
-                                    "content_type", "text",
-                                    "role", "user",
-                                    "type", "question"
-                            )
-                    ),
-                    "parameters", Map.of()
-            );
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("bot_id", BOT_ID);
+            requestBody.put("user_id", DEFAULT_USER_ID);
+            requestBody.put("stream", true);
+
+            Map<String, Object> message = new HashMap<>();
+            message.put("content", effectiveQuery);
+            message.put("content_type", "text");
+            message.put("role", "user");
+            message.put("type", "question");
+
+            requestBody.put("additional_messages", Collections.singletonList(message));
+            requestBody.put("parameters", Collections.emptyMap());
 
             String jsonBody = objectMapper.writeValueAsString(requestBody);
             log.debug("请求体内容: {}", jsonBody);
             HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, headers);
-            log.debug("请求头信息: Content-Type={}, Accept={}, Authorization=Bearer ***", 
-                headers.getContentType(), headers.getAccept());
+            log.debug("请求头信息: Content-Type={}, Accept={}, Authorization=Bearer ***",
+                    headers.getContentType(), headers.getAccept());
 
             log.info("发送POST请求到Coze API: {}", API_URL);
             ResponseEntity<String> response = restTemplate.postForEntity(URI.create(API_URL), requestEntity, String.class);

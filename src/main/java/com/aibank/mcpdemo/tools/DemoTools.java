@@ -1,10 +1,10 @@
 package com.aibank.mcpdemo.tools;
 
+import com.aibank.mcpdemo.mcp.annotation.Tool;
+import com.aibank.mcpdemo.mcp.annotation.ToolParam;
 import com.aibank.mcpdemo.service.CozeWorkflowService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.tool.annotation.Tool;
-import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -61,7 +61,7 @@ public class DemoTools {
      * @return 运算结果
      * @throws IllegalArgumentException 如果运算符不支持，则抛出此异常
      */
-    @Tool(description = "计算两个数字之间的加减乘除运算")
+    @Tool(description = "计算两个数字之间的加减乘除运算", name = "calculate")
     public double calculate(
             @ToolParam(description = "第一个数字") double a,
             @ToolParam(description = "第二个数字") double b,
@@ -69,7 +69,7 @@ public class DemoTools {
     ) {
         logger.info("开始计算: {} {} {}", a, operator, b);
 
-        if (!Set.of(PLUS, MINUS, MULTIPLY, DIVIDE).contains(operator)) {
+        if (!new HashSet<>(Arrays.asList(PLUS, MINUS, MULTIPLY, DIVIDE)).contains(operator)) {
             logger.warn("不支持的运算符: {}", operator);
             throw new IllegalArgumentException("不支持的运算符: " + operator);
         }
@@ -79,13 +79,23 @@ public class DemoTools {
             throw new IllegalArgumentException("除数不能为零");
         }
 
-        double result = switch (operator) {
-            case PLUS -> a + b;
-            case MINUS -> a - b;
-            case MULTIPLY -> a * b;
-            case DIVIDE -> a / b;
-            default -> throw new IllegalStateException("Unexpected operator: " + operator);
-        };
+        double result;
+        switch (operator) {
+            case PLUS:
+                result = a + b;
+                break;
+            case MINUS:
+                result = a - b;
+                break;
+            case MULTIPLY:
+                result = a * b;
+                break;
+            case DIVIDE:
+                result = a / b;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected operator: " + operator);
+        }
 
         logger.info("计算完成: {} {} {} = {}", a, operator, b, result);
         return result;
@@ -97,7 +107,7 @@ public class DemoTools {
      * @param query 用户输入的问题或任务描述
      * @return Java 相关的解答
      */
-    @Tool(description = "Java助手")
+    @Tool(description = "Java助手", name = "javaAssistant")
     public String javaAssistant(
             @ToolParam(description = "Java 相关问题或任务描述") String query
     ) {
@@ -113,7 +123,7 @@ public class DemoTools {
      * @param query 用户输入的问题或任务描述
      * @return Go 相关的解答
      */
-    @Tool(description = "GO助手")
+    @Tool(description = "GO助手", name = "goAssistant")
     public String goAssistant(
             @ToolParam(description = "Go 相关问题或任务描述") String query
     ) {
@@ -129,7 +139,7 @@ public class DemoTools {
      * @param query 用户输入的问题或任务描述
      * @return 前端开发相关的解答
      */
-    @Tool(description = "前端助手")
+    @Tool(description = "前端助手", name = "frontendAssistant")
     public String frontendAssistant(
             @ToolParam(description = "前端开发相关问题或任务描述") String query
     ) {
@@ -145,7 +155,7 @@ public class DemoTools {
      * @param query 用户输入的问题或任务描述
      * @return Python 相关的解答
      */
-    @Tool(description = "Python助手")
+    @Tool(description = "Python助手", name = "pythonAssistant")
     public String pythonAssistant(
             @ToolParam(description = "Python 相关问题或任务描述") String query
     ) {
@@ -161,7 +171,7 @@ public class DemoTools {
      * @param input 输入的字符串
      * @return 删除数字后的字符串
      */
-    @Tool(description = "删除字符串中的所有数字")
+    @Tool(description = "删除字符串中的所有数字", name = "removeNumbers")
     public String removeNumbers(
             @ToolParam(description = "需要处理的字符串") String input
     ) {
@@ -181,7 +191,7 @@ public class DemoTools {
      * @param query 用户输入的问题或任务描述
      * @return SQL 相关的解答
      */
-    @Tool(description = "SQL助手")
+    @Tool(description = "SQL助手", name = "sqlAssistant")
     public String sqlAssistant(
             @ToolParam(description = "SQL 相关问题或任务描述") String query
     ) {
@@ -198,7 +208,7 @@ public class DemoTools {
      * @param query 用户输入的问题
      * @return 通用知识问答结果
      */
-    @Tool(description = "行内通用知识问答助手")
+    @Tool(description = "行内通用知识问答助手", name = "qaAssistant")
     public String qaAssistant(
             @ToolParam(description = "用户输入的问题") String query
     ) {
@@ -214,7 +224,7 @@ public class DemoTools {
      * @param query 用户输入的参考请求
      * @return 代码库相关的解答
      */
-    @Tool(description = "具体代码库参考助手")
+    @Tool(description = "具体代码库参考助手", name = "codeLibAssistant")
     public String codeLibAssistant(
             @ToolParam(description = "代码库参考问题或任务描述") String query
     ) {
@@ -230,7 +240,7 @@ public class DemoTools {
      * @param query 用户输入的问题
      * @return Coze聊天机器人的回答
      */
-    @Tool(description = "Coze聊天机器人助手")
+    @Tool(description = "Coze聊天机器人助手", name = "cozeChatAssistant")
     public String cozeChatAssistant(
             @ToolParam(description = "用户输入的问题") String query
     ) {
