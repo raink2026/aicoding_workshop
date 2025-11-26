@@ -46,4 +46,4 @@ java -jar target/mcp-demo-1.0.0.jar
 
 ## Postman测试集合
 
-项目根目录下的 `mcp-demo-postman-collection.json` 包含了用于测试的请求集合。
+项目根目录下的 `quickstart\mcp-demo-postman-collection.json` 包含了用于测试的请求集合。
